@@ -69,9 +69,17 @@ public class AppRunner {
         print(" h - Выйти");
         String action = fromConsole().substring(0, 1);
         if ("a".equalsIgnoreCase(action)) {
-            coinAcceptor.setAmount(coinAcceptor.getAmount() + 10);
-            print("Вы пополнили баланс на 10");
-            return;
+            print("1 - Для пополнения монетами");
+            print("2 - Для пополнения наличными");
+            String paymentAction = fromConsole().substring(0, 1);
+            if ("1".equalsIgnoreCase(paymentAction)) {
+                coinAcceptor.setAmount(coinAcceptor.getAmount() + 10);
+                print("Вы пополнили баланс на 10");
+                return;
+            } else if ("2".equalsIgnoreCase(paymentAction)) {
+                handleCashPayment();
+                return;
+            }
         }
         try {
             for (int i = 0; i < products.size(); i++) {
