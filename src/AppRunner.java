@@ -1,4 +1,5 @@
 import enums.ActionLetter;
+import exceptions.CustomException;
 import model.*;
 import util.UniversalArray;
 import util.UniversalArrayImpl;
@@ -60,13 +61,15 @@ public class AppRunner {
         while (true) {
             print("Введите сумму наличных для внесения (доступные купюры: 20, 50, 100):");
             int cashAmount = Integer.parseInt(fromConsole());
-
-            if (cashAmount == 20 || cashAmount == 50 || cashAmount == 100) {
+            try {
+                if (cashAmount != 20 && cashAmount != 50 && cashAmount != 100) {
+                    throw new CustomException("Неверная сумма. Пожалуйста, введите 20, 50 или 100.");
+                }
                 cashAcceptor.setAmount(cashAcceptor.getAmount() + cashAmount);
                 print("Вы внесли " + cashAmount + " наличными.");
                 break;
-            } else {
-                print("Неверная сумма. Пожалуйста, введите 20, 50 или 100.");
+            } catch (CustomException e) {
+                e.printStackTrace();
             }
         }
     }
