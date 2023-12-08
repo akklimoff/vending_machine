@@ -10,6 +10,7 @@ public class AppRunner {
     private final UniversalArray<Product> products = new UniversalArrayImpl<>();
 
     private final CoinAcceptor coinAcceptor;
+    private final CashAcceptor cashAcceptor;
 
     private static boolean isExit = false;
 
@@ -23,6 +24,7 @@ public class AppRunner {
                 new Pistachios(ActionLetter.G, 130)
         });
         coinAcceptor = new CoinAcceptor(100);
+        cashAcceptor = new CashAcceptor(0);
     }
 
     public static void run() {
@@ -52,6 +54,13 @@ public class AppRunner {
             }
         }
         return allowProducts;
+    }
+
+    private void handleCashPayment() {
+        print("Введите сумму наличных для внесения:");
+        int cashAmount = Integer.parseInt(fromConsole());
+        cashAcceptor.setAmount(cashAcceptor.getAmount() + cashAmount);
+        print("Вы внесли " + cashAmount + " наличными.");
     }
 
     private void chooseAction(UniversalArray<Product> products) {
