@@ -57,11 +57,20 @@ public class AppRunner {
     }
 
     private void handleCashPayment() {
-        print("Введите сумму наличных для внесения:");
-        int cashAmount = Integer.parseInt(fromConsole());
-        cashAcceptor.setAmount(cashAcceptor.getAmount() + cashAmount);
-        print("Вы внесли " + cashAmount + " наличными.");
+        while (true) {
+            print("Введите сумму наличных для внесения (доступные купюры: 20, 50, 100):");
+            int cashAmount = Integer.parseInt(fromConsole());
+
+            if (cashAmount == 20 || cashAmount == 50 || cashAmount == 100) {
+                cashAcceptor.setAmount(cashAcceptor.getAmount() + cashAmount);
+                print("Вы внесли " + cashAmount + " наличными.");
+                break;
+            } else {
+                print("Неверная сумма. Пожалуйста, введите 20, 50 или 100.");
+            }
+        }
     }
+
 
     private void chooseAction(UniversalArray<Product> products) {
         print(" a - Пополнить баланс");
