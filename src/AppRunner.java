@@ -24,7 +24,7 @@ public class AppRunner {
                 new Mars(ActionLetter.F, 80),
                 new Pistachios(ActionLetter.G, 130)
         });
-        coinAcceptor = new CoinAcceptor(100);
+        coinAcceptor = new CoinAcceptor(0);
         cashAcceptor = new CashAcceptor(0);
     }
 
@@ -74,7 +74,6 @@ public class AppRunner {
         }
     }
 
-
     private void chooseAction(UniversalArray<Product> products) {
         print(" a - Пополнить баланс");
         showActions(products);
@@ -109,8 +108,6 @@ public class AppRunner {
                 chooseAction(products);
             }
         }
-
-
     }
 
     private void showActions(UniversalArray<Product> products) {
